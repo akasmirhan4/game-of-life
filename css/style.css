@@ -1,3 +1,7 @@
+:root {
+  --pixel-size: 20px;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -74,9 +78,9 @@ main {
 }
 
 .cells {
-  min-width: 10px;
-  width: 10px;
-  height: 10px;
+  min-width: var(--pixel-size);
+  width: var(--pixel-size);
+  height: var(--pixel-size);
   border: 1px solid rgba(0, 0, 0, 0.1);
   cursor: pointer;
 }
