@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Conway's Game of Life</title>
+    <!-- Font Awesome for icons -->
+    <script
+      src="https://kit.fontawesome.com/a8421962f0.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <header>
+        <div class="inner">
+          <div class="logo">
+            <h3>Conway's Game of Life</h3>
+          </div>
+          <div class="settings">
+            <label for="width">Width: </label>
+            <input type="number" name="width" id="width" placeholder="100" />
+            <label for="width">Height: </label>
+            <input type="number" name="height" id="height" placeholder="100" />
+          </div>
+          <div class="author">
+            <p>Made by <span>Amirrul Kasmirhan</span></p>
+          </div>
+        </div>
+    </header>
+    <main>
+        <div id="world"></div>
+    </main>
+    <footer>
+      <div class="inner">
+          <div class="controls">
+            <button id="play">
+                <i class="fa fa-play" aria-hidden="true"></i>
+              </button>
+              <button id="step-forward">
+                <i class="fas fa-step-forward"></i>
+              </button>
+              <button id="stop">
+                <i class="fa fa-stop" aria-hidden="true"></i>
+              </button>
+          </div>
+      </div>
+    </footer>
+  </body>
+  <script src="./js/Cell.js"></script>
+  <script src="./js/World.js"></script>
+  <script src="./js/main.js"></script>
+</html>
