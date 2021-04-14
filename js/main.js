@@ -18,9 +18,15 @@ window.onload = function () {
     };
 
     document.getElementById('stop').onclick = function () {
+        if (isPlayed) {
+            isPlayed = false;
+            document.getElementById('play').children[0].classList.remove('fa-pause');
+            document.getElementById('play').children[0].classList.add('fa-play');
+            clearInterval(intervalFunction);
+        }
+        
         nFrame = 0;
         document.getElementById('frame-counter').innerText = nFrame;
-
         // Set all cell isAlive to false
         for (var y = 0; y < world.HEIGHT; y++) {
             for (var x = 0; x < world.WIDTH; x++) {
@@ -58,16 +64,25 @@ window.onload = function () {
     };
 
     document.getElementById('height').onchange = function () {
+        nFrame = 0;
+        document.getElementById('frame-counter').innerText = nFrame;
+
+        if (isPlayed) {
+            isPlayed = false;
+            this.children[0].classList.remove('fa-pause');
+            this.children[0].classList.add('fa-play');
+            clearInterval(intervalFunction);
+        }
 
         height = parseInt(this.value);
 
         // CLAMP INPUT
-        if(height > MAX_SIZE){
-            height=  MAX_SIZE;
+        if (height > MAX_SIZE) {
+            height = MAX_SIZE;
             alert('too big, your computer would not like it...');
         }
-        else if(height < MIN_SIZE){
-            height =  MIN_SIZE;
+        else if (height < MIN_SIZE) {
+            height = MIN_SIZE;
             alert('too small, the simulation would not be interesting...');
         }
         this.value = height;
@@ -76,16 +91,25 @@ window.onload = function () {
     };
 
     document.getElementById('width').onchange = function () {
+        nFrame = 0;
+        document.getElementById('frame-counter').innerText = nFrame;
+
+        if (isPlayed) {
+            isPlayed = false;
+            this.children[0].classList.remove('fa-pause');
+            this.children[0].classList.add('fa-play');
+            clearInterval(intervalFunction);
+        }
 
         width = parseInt(this.value);
 
         // CLAMP INPUT
-        if(width > MAX_SIZE){
-            width=  MAX_SIZE;
+        if (width > MAX_SIZE) {
+            width = MAX_SIZE;
             alert('too big, your computer would not like it...');
         }
-        else if(width < MIN_SIZE){
-            width =  MIN_SIZE;
+        else if (width < MIN_SIZE) {
+            width = MIN_SIZE;
             alert('too small, the simulation would not be interesting...');
         }
         this.value = width;
@@ -93,7 +117,6 @@ window.onload = function () {
 
     };
 
-    document.getElementsByClassName('cells').onclick
 };
 
 function update() {
