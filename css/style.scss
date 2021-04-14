@@ -29,6 +29,12 @@ header,footer{
 label{
     margin: 0 0.4em 0 1em;
 }
+
+.settings, .controls{
+    margin: 0 0.4em;
+    display: flex;
+}
+
 .settings input{
     width: 6em;
 }
