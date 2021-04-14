@@ -1,7 +1,8 @@
 class Cell {
-    constructor(x, y, parent) {
+    constructor(x, y, element, parent) {
         this.x = x;
-        this.y = y
+        this.y = y;
+        this.element = element;
         this.parent = parent;
         this.isAlive = false;
     }
