@@ -1,5 +1,5 @@
 // INITIALISER
-const MAX_SIZE = 100;
+const MAX_SIZE = 1000;
 const MIN_SIZE = 5;
 var width = parseInt(document.getElementById('width').value);
 var height = parseInt(document.getElementById('height').value);
@@ -27,7 +27,7 @@ window.onload = function () {
         
         nFrame = 0;
         document.getElementById('frame-counter').innerText = nFrame;
-        
+
         // Set all cell isAlive to false
         world.initialise();
 
@@ -74,11 +74,11 @@ window.onload = function () {
         // CLAMP INPUT
         if (height > MAX_SIZE) {
             height = MAX_SIZE;
-            alert('too big, your computer would not like it...');
+            alert('Good luck loading this big, your computer would not like it...');
         }
         else if (height < MIN_SIZE) {
             height = MIN_SIZE;
-            alert('too small, the simulation would not be interesting...');
+            alert('Dont be shy, add more to be more interesting...');
         }
         this.value = height;
         world = new World(width, height);
@@ -118,5 +118,4 @@ function update() {
     nFrame++;
     document.getElementById('frame-counter').innerText = nFrame;
     world.update();
-    world.display();
 };

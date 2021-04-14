@@ -109,30 +109,20 @@ class World {
                 if (isAlive) {
                     if (!(nAlive == 2 || nAlive == 3)) {
                         tempState[index] = false;
+                        let element = document.querySelector(`.cells[x='${x}'][y='${y}']`);
+                        element.removeAttribute('isAlive');
                     }
                 }
                 else {
                     if (nAlive == 3) {
                         tempState[index] = true;
+                        let element = document.querySelector(`.cells[x='${x}'][y='${y}']`);
+                        element.setAttribute('isAlive', '');
                     }
                 }
             }
         }
         // Update in one go
         this.cells = tempState;
-    }
-
-    display() {
-        for (var y = 0; y < this.height; y++) {
-            for (var x = 0; x < this.width; x++) {
-                let element = document.querySelector(`.cells[x='${x}'][y='${y}']`);
-                if (this.getState(x,y)) {
-                    element.setAttribute('isAlive', '');
-                }
-                else {
-                    element.removeAttribute('isAlive');
-                }
-            }
-        }
     }
 }
