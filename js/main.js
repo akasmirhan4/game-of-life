@@ -27,14 +27,9 @@ window.onload = function () {
         
         nFrame = 0;
         document.getElementById('frame-counter').innerText = nFrame;
+        
         // Set all cell isAlive to false
-        for (var y = 0; y < world.HEIGHT; y++) {
-            for (var x = 0; x < world.WIDTH; x++) {
-                world.cells[x][y].isAlive = false;
-                let element = document.querySelector(`.row[y='${y}'] .cells[x='${x}']`);
-                element.removeAttribute('isAlive');
-            }
-        }
+        world.initialise();
 
     };
 
@@ -123,4 +118,5 @@ function update() {
     nFrame++;
     document.getElementById('frame-counter').innerText = nFrame;
     world.update();
+    world.display();
 };
