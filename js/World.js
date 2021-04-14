@@ -13,6 +13,9 @@ class World {
         this.cells = [...new Array(width)].map(() => new Array(height));
         this.element = document.getElementById("world");
 
+        // RESET WORLD
+        this.element.innerHTML = "";
+
         for (var y = 0; y < this.HEIGHT; y++) {
 
             // ADD ROW

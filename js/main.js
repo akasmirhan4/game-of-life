@@ -1,9 +1,11 @@
 // INITIALISER
+const MAX_SIZE = 100;
+const MIN_SIZE = 5;
+var width = parseInt(document.getElementById('width').value);
+var height = parseInt(document.getElementById('height').value);
 
-const WIDTH = 50;
-const HEIGHT = 50;
+var world = new World(width, height);
 
-var world = new World(WIDTH, HEIGHT);
 var isPlayed = false;
 var intervalFunction;
 var nFrame = 0;
@@ -54,6 +56,44 @@ window.onload = function () {
             intervalFunction = setInterval(update, 1000 / FPS);
         }
     };
+
+    document.getElementById('height').onchange = function () {
+
+        height = parseInt(this.value);
+
+        // CLAMP INPUT
+        if(height > MAX_SIZE){
+            height=  MAX_SIZE;
+            alert('too big, your computer would not like it...');
+        }
+        else if(height < MIN_SIZE){
+            height =  MIN_SIZE;
+            alert('too small, the simulation would not be interesting...');
+        }
+        this.value = height;
+        world = new World(width, height);
+
+    };
+
+    document.getElementById('width').onchange = function () {
+
+        width = parseInt(this.value);
+
+        // CLAMP INPUT
+        if(width > MAX_SIZE){
+            width=  MAX_SIZE;
+            alert('too big, your computer would not like it...');
+        }
+        else if(width < MIN_SIZE){
+            width =  MIN_SIZE;
+            alert('too small, the simulation would not be interesting...');
+        }
+        this.value = width;
+        world = new World(width, height);
+
+    };
+
+    document.getElementsByClassName('cells').onclick
 };
 
 function update() {
