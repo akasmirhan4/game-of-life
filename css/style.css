@@ -1,5 +1,5 @@
 :root {
-  --pixel-size: 20px;
+  --pixel-size: 40px;
 }
 
 body {
@@ -23,13 +23,30 @@ input:focus {
   outline: none;
 }
 
-header, footer {
-  background: #323130;
+header,
+footer {
   color: white;
   width: 100%;
 }
 
-.inner {
+.topbar,
+.bottombar {
+  background: #323130;
+}
+
+.blueprints {
+  background: #494a4e;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 4em;
+}
+
+.topbar,
+.bottombar {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -44,7 +61,8 @@ label {
   margin: 0 0.4em 0 1em;
 }
 
-.settings, .controls {
+.settings,
+.controls {
   margin: 0 0.4em;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -56,7 +74,65 @@ label {
 }
 
 .author span {
+  color: #4caf50;
   font-weight: bold;
+}
+
+/* The dropdown container */
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+/* Dropdown button */
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  /* Important for vertical align on mobile phones */
+  margin: 0;
+  /* Important for vertical align on mobile phones */
+}
+
+/* Add a red background color to navbar links on hover */
+.navbar a:hover,
+.dropdown:hover .dropbtn {
+  background-color: #323130;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #323130;
+  min-width: 160px;
+  -webkit-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  float: none;
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+/* Add a grey background color to dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #4caf50;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
 }
 
 main {
@@ -97,12 +173,20 @@ main {
   background: #323130;
 }
 
-.cells:hover {
-  background: #908e8c;
+.cells:not(.blueprint-empty):hover {
+  background: #4caf50;
+}
+
+.cells.blueprint {
+  background: #4caf50;
 }
 
 button {
-  color: #141414;
+  -webkit-appearance: none;
+  outline: none;
+  border: none;
+  background: unset;
+  color: white;
   padding: 0.4em 0.6em;
   margin: 0 0.4em;
   cursor: pointer;
@@ -115,10 +199,6 @@ button:hover {
 
 button:focus {
   outline: none;
-}
-
-footer {
-  padding: 1em 0;
 }
 
 .side-controls {
@@ -135,28 +215,32 @@ footer {
   margin-right: 0.4em;
 }
 
-#speed {
+button.active {
+  color: #4caf50;
+}
+
+input[type='range'] {
   -webkit-appearance: none;
   width: 100%;
   height: 1em;
   background: #d3d3d3;
   outline: none;
-  opacity: 0.7;
-  -webkit-transition: .2s;
-  -webkit-transition: opacity .2s;
-  transition: opacity .2s;
+  opacity: 0.85;
+  -webkit-transition: 0.2s;
+  -webkit-transition: opacity 0.2s;
+  transition: opacity 0.2s;
 }
 
-#speed:hover {
+input[type='range']:hover {
   opacity: 1;
 }
 
-#speed::-webkit-slider-thumb {
+input[type='range']::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 2em;
   height: 2em;
-  background: #4CAF50;
+  background: #4caf50;
   cursor: pointer;
 }
 /*# sourceMappingURL=style.css.map */

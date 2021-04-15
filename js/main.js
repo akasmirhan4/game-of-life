@@ -20,6 +20,7 @@ window.onload = function () {
     document.getElementById('stop').onclick = function () {
         if (isPlayed) {
             isPlayed = false;
+            document.getElementById('play').classList.remove('active');
             document.getElementById('play').children[0].classList.remove('fa-pause');
             document.getElementById('play').children[0].classList.add('fa-play');
             clearInterval(intervalFunction);
@@ -37,6 +38,7 @@ window.onload = function () {
         if (isPlayed) {
             isPlayed = false;
             this.children[0].classList.remove('fa-pause');
+            this.classList.remove('active');
             this.children[0].classList.add('fa-play');
             clearInterval(intervalFunction);
         }
@@ -44,6 +46,7 @@ window.onload = function () {
             let FPS = document.getElementById('speed').value;
             isPlayed = true;
             this.children[0].classList.add('fa-pause');
+            this.classList.add('active');
             this.children[0].classList.remove('fa-play');
             intervalFunction = setInterval(update, 1000 / FPS);
         }
@@ -64,8 +67,9 @@ window.onload = function () {
 
         if (isPlayed) {
             isPlayed = false;
-            this.children[0].classList.remove('fa-pause');
-            this.children[0].classList.add('fa-play');
+            document.getElementById('play').classList.remove('active');
+            document.getElementById('play').children[0].classList.remove('fa-pause');
+            document.getElementById('play').children[0].classList.add('fa-play');
             clearInterval(intervalFunction);
         }
 
@@ -91,8 +95,9 @@ window.onload = function () {
 
         if (isPlayed) {
             isPlayed = false;
-            this.children[0].classList.remove('fa-pause');
-            this.children[0].classList.add('fa-play');
+            document.getElementById('play').classList.remove('active');
+            document.getElementById('play').children[0].classList.remove('fa-pause');
+            document.getElementById('play').children[0].classList.add('fa-play');
             clearInterval(intervalFunction);
         }
 
@@ -112,6 +117,12 @@ window.onload = function () {
 
     };
 
+    document.getElementById('zoom').onchange = function () {
+
+        document.documentElement.style.setProperty('--pixel-size',this.value + 'px');
+    };
+
+    getBlueprint();
 };
 
 function update() {

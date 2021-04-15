@@ -15,34 +15,97 @@
   </head>
   <body>
     <header>
-      <div class="inner">
+      <section class="topbar">
         <div class="logo">
           <h3>Conway's Game of Life</h3>
         </div>
         <div class="settings">
           <div class="width">
             <label for="width">Width: </label>
-            <input type="number" name="width" id="width" value="100" min = "5" max = "1000"/>
+            <input
+              type="number"
+              name="width"
+              id="width"
+              value="100"
+              min="5"
+              max="1000"
+            />
           </div>
           <div class="height">
             <label for="width">Height: </label>
-            <input type="number" name="height" id="height" value="100" min = "5" max = "1000"/>
+            <input
+              type="number"
+              name="height"
+              id="height"
+              value="100"
+              min="5"
+              max="1000"
+            />
           </div>
         </div>
         <div class="author">
           <p>Made by <span>Amirrul Kasmirhan</span></p>
         </div>
-      </div>
+      </section>
+      <section class="blueprints">
+        <button id = 'pointer'><i class="fa fa-mouse-pointer" aria-hidden="true"></i></button>
+        <div class="dropdown still-lifes">
+          <button class="dropbtn">
+            Still lifes
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a id="block" href="#">Block</a>
+            <a id="bee-hive" href="#">Bee-hive</a>
+            <a id="loaf" href="#">Loaf</a>
+            <a id="boat" href="#">Boat</a>
+            <a id="tub" href="#">Tub</a>
+          </div>
+        </div>
+        <div class="dropdown oscillators">
+          <button class="dropbtn">
+            Oscillators
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a id ="blinker" href="#">Blinker</a>
+            <a id ="toad" href="#">Toad</a>
+            <a id ="beacon" href="#">Beacon</a>
+            <a id ="pulsar" href="#">Pulsar</a>
+            <a id ="penta-decathlon" href="#">Penta-decathlon</a>
+          </div>
+        </div>
+        <div class="dropdown spaceships">
+          <button class="dropbtn">
+            Spaceships
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a id ="glider" href="#">Glider</a>
+            <a id ="lightweight" href="#">Lightweight</a>
+            <a id ="middleweight" href="#">Middleweight</a>
+            <a id ="heavyweight" href="#">Heavyweight</a>
+          </div>
+        </div>
+      </section>
     </header>
     <main>
       <div id="world"></div>
     </main>
     <footer>
-      <div class="inner">
+      <section class="bottombar">
         <div class="side-controls">
-            <p>Frame #:</p><p id = "frame-counter"></p>
-            <label for="speed">Speed: </label>
-            <input type="range" name="speed" id="speed" min="1" max="10" value="3"/>
+          <p>Frame #:</p>
+          <p id="frame-counter"></p>
+          <label for="speed">Speed: </label>
+          <input
+            type="range"
+            name="speed"
+            id="speed"
+            min="1"
+            max="10"
+            value="3"
+          />
         </div>
         <div class="controls">
           <button id="play">
@@ -55,9 +118,22 @@
             <i class="fa fa-stop" aria-hidden="true"></i>
           </button>
         </div>
-      </div>
+        <div class="side-controls">
+          <label for="speed">Zoom: </label>
+          <input
+            type="range"
+            name="zoom"
+            id="zoom"
+            min="5"
+            max="100"
+            value="40"
+            step="5"
+          />
+        </div>
+      </section>
     </footer>
   </body>
+  <script src="./js/blueprint.js"></script>
   <script src="./js/Cell.js"></script>
   <script src="./js/World.js"></script>
   <script src="./js/main.js"></script>

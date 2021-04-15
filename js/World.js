@@ -88,8 +88,19 @@ class World {
                 cellElement.addEventListener('click', function () {
                     let x = parseInt(this.getAttribute('x'));
                     let y = parseInt(this.getAttribute('y'));
-                    world.toggleState(x, y);
-                    this.toggleAttribute('isAlive');
+                    if (!this.classList.value.includes('blueprint')) {
+                        world.toggleState(x, y);
+                        this.toggleAttribute('isAlive');
+                    }
+                    else {
+                        placeBlueprint(x, y);
+                    }
+
+                });
+                cellElement.addEventListener('mouseover', function () {
+                    let x = parseInt(this.getAttribute('x'));
+                    let y = parseInt(this.getAttribute('y'));
+                    overlayBlueprint(x, y);
                 });
                 rowElement.append(cellElement);
             }
