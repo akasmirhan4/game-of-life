@@ -4,148 +4,114 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Conway's Game of Life</title>
-    <!-- Font Awesome for icons -->
-    <script
-      src="https://kit.fontawesome.com/a8421962f0.js"
-      crossorigin="anonymous"
-    ></script>
-
+    <!-- EXTERNAL CSS -->
     <link rel="stylesheet" href="./css/style.css" />
+    <title>Conway's Game of Life</title>
   </head>
   <body>
     <header>
       <section class="topbar">
-        <div class="logo">
-          <h3>Conway's Game of Life</h3>
+        <div class="left-section">
+          <img src="./assets/logo.svg" id="logo" />
+          <h1 id="website-title">Conway's Game of Life</h1>
         </div>
-        <div class="settings">
-          <div class="width">
-            <label for="width">Width: </label>
-            <input
-              type="number"
-              name="width"
-              id="width"
-              value="100"
-            />
-          </div>
-          <div class="height">
-            <label for="width">Height: </label>
-            <input
-              type="number"
-              name="height"
-              id="height"
-              value="100"
-            />
-          </div>
-          <button id = "show-border" class = "active"><i class="fas fa-border-all"></i></button>
+        <div class="middle-section">
+          <h1 id="instruction-title">Welcome to Conway's Game of Life!</h1>
         </div>
-        <div class="author">
-          <p>Made by <span>Amirrul Kasmirhan</span></p>
-        </div>
-      </section>
-      <section class="blueprints">
-        <button id="pointer">
-          <i class="fa fa-mouse-pointer" aria-hidden="true"></i>
-        </button>
-        <button id="hand">
-          <i class="fas fa-hand-paper" aria-hidden="true"></i>
-        </button>
-        <div class="dropdown still-lifes">
-          <button class="dropbtn">
-            Still lifes
-            <i class="fa fa-caret-down"></i>
+        <div class="right-section">
+          <h2 id="author">Made by <span>Amirrul Kasmirhan</span></h2>
+          <button class="settings">
+            <i class="fas fa-2x fa-cog"></i>
           </button>
-          <div class="dropdown-content">
-            <a id="block" href="#">Block</a>
-            <a id="bee-hive" href="#">Bee-hive</a>
-            <a id="loaf" href="#">Loaf</a>
-            <a id="boat" href="#">Boat</a>
-            <a id="tub" href="#">Tub</a>
-          </div>
-        </div>
-        <div class="dropdown oscillators">
-          <button class="dropbtn">
-            Oscillators
-            <i class="fa fa-caret-down"></i>
-          </button>
-          <div class="dropdown-content">
-            <a id="blinker" href="#">Blinker</a>
-            <a id="toad" href="#">Toad</a>
-            <a id="beacon" href="#">Beacon</a>
-            <a id="pulsar" href="#">Pulsar</a>
-            <a id="penta-decathlon" href="#">Penta-decathlon</a>
-          </div>
-        </div>
-        <div class="dropdown spaceships">
-          <button class="dropbtn">
-            Spaceships
-            <i class="fa fa-caret-down"></i>
-          </button>
-          <div class="dropdown-content">
-            <a id="glider" href="#">Glider</a>
-            <a id="lightweight" href="#">Lightweight</a>
-            <a id="middleweight" href="#">Middleweight</a>
-            <a id="heavyweight" href="#">Heavyweight</a>
-          </div>
-        </div>
-        <div class="dropdown assembler">
-          <button class="dropbtn">
-            Assembler
-            <i class="fa fa-caret-down"></i>
-          </button>
-          <div class="dropdown-content">
-            <a id="gosper-glider-gun" href="#">Gosper glider gun</a>
-          </div>
         </div>
       </section>
     </header>
     <main>
-      <canvas id="world"></canvas>
-    </main>
-    <footer>
-      <section class="bottombar">
-        <div class="side-controls">
-          <p>Generation #:</p>
-          <p id="generation-counter"></p>
-          <label for="speed">Speed: </label>
-          <input
-            type="range"
-            name="speed"
-            id="speed"
-            min="1"
-            max="10"
-            value="3"
-          />
+      <section class="tutorial-container">
+        <div class="level-label">
+          <i class="far fa-bookmark"></i>
+          <h3>Level <span id="level-no">0</span></h3>
         </div>
-        <div class="controls">
-          <button id="play">
-            <i class="fa fa-play" aria-hidden="true"></i>
+        <div class="content">
+          <div class="level-name">Welcome to Conway's Game of Life!</div>
+          <p>
+            The Game of Life, also known simply as Life, is a cellular automaton
+            devised by the British mathematician John Horton Conway in 1970. It
+            is a zero-player game, meaning that its evolution is determined by
+            its initial state, requiring no further input. One interacts with
+            the Game of Life by creating an initial configuration and observing
+            how it evolves. It is Turing complete and can simulate a universal
+            constructor or any other Turing machine.
+          </p>
+          <h3>Rules:</h3>
+          <ol>
+            <li>Any live cell with two or three live neighbours survives.</li>
+            <li>
+              Any dead cell with three live neighbours becomes a live cell.
+            </li>
+            <li>
+              All other live cells die in the next generation. Similarly, all
+              other dead cells stay dead.
+            </li>
+          </ol>
+        </div>
+        <div class="instruction-label">
+          <i class="far fa-check-square"></i>
+          <h3>Instructions</h3>
+        </div>
+        <div class="instruction content">
+          <ol><li>Click <i>Run</i> to continue</li></ol>
+        </div>
+        <div class="tips"></div>
+      </section>
+      <section class="main">
+        <div class="toolbar-container">
+          <button id="pointer">
+            <i class="fa fa-mouse-pointer" aria-hidden="true"></i>
           </button>
+        </div>
+        <div class="grid-container">
+          <canvas id="grid" tabindex="0"></canvas>
+        </div>
+        <div class="control-container">
+          <button id="run">Run</button>
           <button id="step-forward">
-            <i class="fas fa-step-forward"></i>
+            <i class="fa fa-step-forward" aria-hidden="true"></i>
           </button>
           <button id="stop">
             <i class="fa fa-stop" aria-hidden="true"></i>
           </button>
-        </div>
-        <div class="side-controls">
-          <label for="speed">Zoom: </label>
+          <label id="speed-label" for="speed">Speed: </label>
           <input
             type="range"
-            name="zoom"
-            id="zoom"
+            name="speed"
+            id="speed"
+            value="1"
             min="1"
-            max="40"
-            value="100"
-            step="1"
+            max="10"
           />
         </div>
       </section>
-    </footer>
+    </main>
+    <footer></footer>
   </body>
-  <script src="./js/blueprint.js"></script>
+
+  <!-- FONTAWESOME -->
+  <script
+    src="https://kit.fontawesome.com/a8421962f0.js"
+    crossorigin="anonymous"
+  ></script>
+
+  <!-- JQUERY -->
+  <script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"
+  ></script>
+
+  <!-- EXTERNAL JS -->
   <script src="./js/Grid.js"></script>
   <script src="./js/main.js"></script>
+  <script src="./js/blueprint.js"></script>
   <script src="./js/eventListener.js"></script>
 </html>

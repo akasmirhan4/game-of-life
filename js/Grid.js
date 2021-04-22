@@ -1,20 +1,25 @@
 /* GRID SETTINGS */
 let SHOW_GRID_BORDER = true;
-const GRID_BACKGROUND_COLOR = "#AAAAAA";
+const GRID_BACKGROUND_COLOR = getComputedStyle(document.documentElement)
+    .getPropertyValue('--grid-bg');
 const SHOW_GRID_CENTER = false;
 const GRID_RANDOMISE = false;
 /* CELL SETTINGS */
-let CELL_SIZE = 40;
-const CELL_ALIVE_COLOR = '#444444';
-const CELL_DEAD_COLOR = '#CCCCCC';
-const CELL_HOVER_COLOR = 'rgba(76, 175, 80, 0.5)';
+let CELL_SIZE = 100;
+const CELL_ALIVE_COLOR = getComputedStyle(document.documentElement)
+    .getPropertyValue('--off-white');
+const CELL_DEAD_COLOR = getComputedStyle(document.documentElement)
+    .getPropertyValue('--grid-bg');
+const CELL_BORDER_COLOR = getComputedStyle(document.documentElement)
+    .getPropertyValue('--off-white');
+const CELL_HOVER_COLOR = 'rgba(00, 204, 80, 0.9)';
 
 /* MAIN GRID  */
 class Grid {
-    constructor(width, height) {
+    constructor(element, width, height) {
         this.width = width;
         this.height = height;
-        this.element = document.getElementById('world');
+        this.element = element;
 
         this.cells = [];
         this.ctx = this.element.getContext("2d");
@@ -24,8 +29,8 @@ class Grid {
         this.hoveredCell = { x: null, y: null, isAlive: null };
         this.blueprintCells = [];
 
-        this.element.height = this.element.parentElement.clientHeight;
-        this.element.width = this.element.parentElement.clientWidth;
+        this.element.height = this.element.parentElement.getBoundingClientRect().height;
+        this.element.width = this.element.parentElement.getBoundingClientRect().width;
 
         this.displayClear();
 
@@ -222,12 +227,12 @@ class Grid {
         if (CELL_SIZE > 4) {
             this.ctx.beginPath();
             this.ctx.lineWidth = 1;
-            this.ctx.strokeStyle = 'black';
-            for (var x = 0; x < this.width; x++) {
+            this.ctx.strokeStyle = CELL_BORDER_COLOR;
+            for (var x = 0; x < this.width + 1; x++) {
                 this.ctx.moveTo(x * CELL_SIZE, 0);
                 this.ctx.lineTo(x * CELL_SIZE, this.height * CELL_SIZE);
             }
-            for (var y = 0; y < this.height; y++) {
+            for (var y = 0; y < this.height + 1; y++) {
                 this.ctx.moveTo(0, y * CELL_SIZE);
                 this.ctx.lineTo(this.width * CELL_SIZE, y * CELL_SIZE);
             }
