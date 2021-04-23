@@ -13,6 +13,7 @@ const CELL_DEAD_COLOR = getComputedStyle(document.documentElement)
 const CELL_BORDER_COLOR = getComputedStyle(document.documentElement)
     .getPropertyValue('--off-white');
 const CELL_HOVER_COLOR = 'rgba(00, 204, 80, 0.9)';
+const CELL_PATTERN_COLOR = 'purple';
 
 /* MAIN GRID  */
 class Grid {
@@ -28,6 +29,7 @@ class Grid {
         this.deadCells = [];
         this.hoveredCell = { x: null, y: null, isAlive: null };
         this.blueprintCells = [];
+        this.pattern = { dx: null, dy: null, patternCells: [] };
 
         this.element.height = this.element.parentElement.getBoundingClientRect().height;
         this.element.width = this.element.parentElement.getBoundingClientRect().width;
@@ -183,6 +185,8 @@ class Grid {
         this.ctx.fill();
         this.ctx.closePath();
 
+        this.displayPattern();
+
         if (SHOW_GRID_BORDER) {
             this.showBorders();
         }
@@ -208,9 +212,40 @@ class Grid {
         this.deadCells = [];
         this.ctx.fill();
         this.ctx.closePath();
-
+        grid.displayPattern();
+        
         if (SHOW_GRID_BORDER) {
             this.showBorders();
+        }
+    }
+    displayPattern() {
+        let pattern = this.pattern.patternCells;
+        if(pattern.length){
+            const dimensions = [pattern[0].length, pattern.length];
+            for (var by = 0; by < dimensions[1]; by++) {
+                for (var bx = 0; bx < dimensions[0]; bx++) {
+                    let currentState = this.getState(this.pattern.dx + bx,this.pattern.dy + by);
+                    let patternState = pattern[by][bx] == 1 ? true : false;
+                    let fill = currentState ? CELL_ALIVE_COLOR : patternState ? CELL_PATTERN_COLOR : CELL_DEAD_COLOR;
+                    grid.drawCell(this.pattern.dx + bx, this.pattern.dy + by, fill);
+                }
+            }
+        }
+    }
+    checkPatternFilled(){
+        let pattern = this.pattern.patternCells;
+        if(pattern.length){
+            const dimensions = [pattern[0].length, pattern.length];
+            for (var by = 0; by < dimensions[1]; by++) {
+                for (var bx = 0; bx < dimensions[0]; bx++) {
+                    let currentState = this.getState(this.pattern.dx + bx,this.pattern.dy + by);
+                    let patternState = pattern[by][bx] == 1 ? true : false;
+                    if(currentState !== patternState){
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
     }
     pathCell(x, y) {
@@ -222,6 +257,10 @@ class Grid {
         if (SHOW_GRID_BORDER) {
             this.showBorders();
         }
+    }
+    outlineCell(x, y, fill = CELL_ALIVE_COLOR) {
+        this.ctx.strokeStyle = fill;
+        this.ctx.strokeRect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
     }
     showBorders() {
         if (CELL_SIZE > 4) {

@@ -31,7 +31,7 @@ function moveGrid(e, element) {
 }
 
 $(document).ready(function () {
-
+    getLevel();
     $(window).resize(function () {
         grid.element.height = grid.element.parentElement.clientHeight;
         grid.element.width = grid.element.parentElement.clientWidth;
@@ -117,7 +117,7 @@ $(document).ready(function () {
                                 } else {
                                     grid.drawCell(grid.hoveredCell.x, grid.hoveredCell.y, CELL_DEAD_COLOR);
                                 }
-
+                                grid.displayPattern();
                                 // UPDATE NEW HOVERED CELL
                                 grid.hoveredCell.x = currentCell.x;
                                 grid.hoveredCell.y = currentCell.y;

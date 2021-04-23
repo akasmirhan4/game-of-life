@@ -149,6 +149,7 @@ main {
   resize: horizontal;
   max-width: 40em;
   height: 100%;
+  width: 40em;
 }
 
 .level-label,
