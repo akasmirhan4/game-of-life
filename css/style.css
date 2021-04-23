@@ -246,20 +246,23 @@ main {
   margin: 0 1em;
 }
 
+.main {
+  -webkit-filter: brightness(0.5);
+          filter: brightness(0.5);
+  -webkit-transition: all ease-out 0.1s;
+  transition: all ease-out 0.1s;
+}
+
 .grid-container {
   background-color: var(--grid-bg);
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
   overflow: hidden;
-  -webkit-filter: brightness(0.5);
-          filter: brightness(0.5);
-  -webkit-transition: all ease-out 0.1s;
-  transition: all ease-out 0.1s;
 }
 
-.grid-container:focus-within,
-.grid-container:hover {
+.main:focus-within,
+.main:hover {
   -webkit-filter: brightness(1);
           filter: brightness(1);
 }

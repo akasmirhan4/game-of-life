@@ -13,4 +13,12 @@ function update() {
     grid.displayUpdate();
 };
 
+
+$.getScript( "js/lvl/0.js" )
+  .done(function( script, textStatus ) {
+    console.log( textStatus );
+  })
+  .fail(function( jqxhr, settings, exception ) {
+    console.log( "Triggered ajaxError handler." );
+});
 // UPDATE FUNCTION CALLED IN PLAY. REFER TO eventListener.js

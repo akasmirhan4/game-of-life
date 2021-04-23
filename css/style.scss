@@ -201,14 +201,18 @@ main {
 }
 
 // MAIN
+.main{
+  filter: brightness(0.5);
+  transition: all ease-out
+   0.1s;
+}
 .grid-container {
   background-color: var(--grid-bg);
   flex-grow: 1;
   overflow: hidden;
-  filter: brightness(0.5);
-  transition: all ease-out 0.1s;
+
 }
-.grid-container:focus-within,
-.grid-container:hover {
+.main:focus-within,
+.main:hover {
   filter: brightness(1);
 }
